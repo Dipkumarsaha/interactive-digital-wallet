@@ -1,16 +1,15 @@
-<?php 
-
-require 'DbConnect.php';
-
-function login($number, $amount) {
-$conn = connect();
-$sql = $conn->prepare("SELECT * FROM WALLET Where number = ? and amount = ?");
-$sql->bind_param("ss", $username, $password);
-$sql->execute();
-$res = $sql->get_result();
-
-return $res->num_rows === 1;
- }
-
-
-?> 
+function getAllNumber() {
+$conn = connect(); 
+$sql = $conn->prepare("SELECT number FROM digital-wallet"); 
+$sql->execute(); 
+$res = $sql->get_result(); 
+return $res->fetch_all(MYSQLI_ASSOC);
+}
+function getNumber($username) {
+$conn = connect(); 
+$sql = $conn->prepare("SELECT number FROM digital-wallet WHERE username = ?"); 
+$sql->bind param("s", $number); 
+$sql->execute(); 
+$res = $sql->get_result(); 
+return $res->fetch_all(MYSQLI ASSOC);
+}
